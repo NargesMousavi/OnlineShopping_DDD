@@ -16,6 +16,7 @@ public class CustomerAccountRepository : ICustomerAccountRepository
         using (var dbCtx = new OnlineShoppingDbContext())
         {
              dbCtx.CustomerAccounts.Update(account);
+             dbCtx.SaveChanges();
         }
     }
 }

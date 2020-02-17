@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OnlineShopping.Presentation.Models;
@@ -16,10 +12,10 @@ namespace OnlineShopping.Presentation.Controllers
 
         private readonly ProductService productService;
 
-        public HomeController(ILogger<HomeController> logger, ICustomerAccountRepository repo)
+        public HomeController(ILogger<HomeController> logger, ICustomerAccountRepository repo,IProductRepository proRepo)
         {
             _logger = logger;
-            productService=new  ProductService(repo);
+            productService=new  ProductService(repo,proRepo);
         }
         public IActionResult AddItemToProduct(int AccountId,int ProductId)
         {

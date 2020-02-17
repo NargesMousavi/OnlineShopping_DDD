@@ -16,6 +16,7 @@ namespace OnlineShopping.BusinessModel
         {
             //In this step We can see that ACs is required to acomplish steps in this service.(YAGNI & iterrative)
             //todo: write tests.
+            // Note that these steps can be done by any client.
             var account = customerAccountRepo.Get(accountId);
             var pro = prodRepo.Get(accountId);
             account.AddItemToBasket(pro);

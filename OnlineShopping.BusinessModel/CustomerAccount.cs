@@ -5,6 +5,7 @@ namespace OnlineShopping.BusinessModel
 {
     public class CustomerAccount
     {
+        public int Id{get; private set;}
         private Basket Basket;
         internal void AddItemToBasket(Product pro)
         {
@@ -13,8 +14,8 @@ namespace OnlineShopping.BusinessModel
             Int fact access to aggregates is usuall and clients can have asscess to aggregates
             beacause they can load them from storage and then map to domain entities 
             (just aggregates becuse we model domain with repo at aggregates only).
-            If they need a service that there is in domain services thent
-            hey themself decide to call domain service. 
+            If they need a service that there is in domain services then
+            they themself decide to call domain service. 
             */
             Basket.AddItem(pro); 
         }
