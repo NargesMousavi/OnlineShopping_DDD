@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OnlineShopping.BusinessModel
 {
@@ -21,6 +23,17 @@ namespace OnlineShopping.BusinessModel
             var pro = prodRepo.Get(accountId);
             account.AddItemToBasket(pro);
             customerAccountRepo.Update(account);//means write and state changes.
+        }
+
+        public List<ProductDto> GetProductListByCat(int catId)
+        {
+             //todo: Refactore: Note that creation dtos based on client requirments is responsibility of application services not domain itself.
+            var ps=prodRepo.GetAllByCat(catId);
+            return ps.Select(p=> new ProductDto
+            {
+
+            }
+            ).ToList();
         }
     }
 }

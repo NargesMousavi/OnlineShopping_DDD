@@ -4,6 +4,6 @@ namespace OnlineShopping.BusinessModel
 {
     public class BasketDto
     {
-        public List<ProductDo> Items{get;set;}
+        public List<ProductDto> Items{get;set;}
     }
 }

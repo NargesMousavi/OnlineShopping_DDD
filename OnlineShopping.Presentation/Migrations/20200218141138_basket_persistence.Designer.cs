@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineShopping.Presentation.DataAccess;
 
 namespace OnlineShopping.Presentation.Migrations
 {
     [DbContext(typeof(OnlineShoppingDbContext))]
-    partial class OnlineShoppingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200218141138_basket_persistence")]
+    partial class basket_persistence
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

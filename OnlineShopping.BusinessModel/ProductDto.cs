@@ -1,6 +1,6 @@
 namespace OnlineShopping.BusinessModel
 {
-    public class ProductDo
+    public class ProductDto
     {
     }
 }

@@ -11,7 +11,7 @@ namespace OnlineShopping.Presentation.DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Data Source=.;Initial Catalog=OnlineShopping;persist security info=True;user id=sa;password=123456;MultipleActiveResultSets=True;Connection Timeout=960;");
+                @"Data Source=.;Initial Catalog=OnlineShopping;persist security info=True;user id=sa;password=hasin#123456;MultipleActiveResultSets=True;Connection Timeout=960;");
         }
     }
 }
