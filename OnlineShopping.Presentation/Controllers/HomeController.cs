@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace OnlineShopping.Presentation.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ApiController
     {
         private readonly ILogger<HomeController> _logger;
         private ICustomerAccountRepository customerAccountRepo;
@@ -21,37 +21,38 @@ namespace OnlineShopping.Presentation.Controllers
             _logger = logger;
             // productService = new ProductService(accountRepo, proRepo);
         }
-        public IActionResult GetProductList(int catId)
+        // Here we define business(product) services. Business APIs for clients.(Senarios)
+        public List<ProductDto> GetProductList(int catId)
         {
             // We can Refactor to productService.GetProductListByCat(catId) to centralized services if we require this service one more.
             // Note that creation dtos based on client requirments is responsibility of application services not domain itself.
             var ps = prodRepo.GetAllByCat(catId);
-           var r= ps.Select(p => new ProductDto
+            var r = ps.Select(p => new ProductDto
             {
 
             }
-            ).ToList();
-            return View();
+             ).ToList();
+            return r;
         }
-        public IActionResult AddItemToProduct(int accountId, int productId)
+        [Authorization] //Is needed for accountId.
+        public bool AddItemToBasket( int productId)
         {
-            productService.AddItemToProduct(accountId, productId);
-            return View();
+            //get accountId from the profile of current (signed in) user.
+            productService.AddItemToBasket(accountId, productId);
+            return true;
         }
-        public IActionResult Index()
+        [Authorization] //Is needed for accountId.
+        public ShippingOptionsDto GetShippingOptionsForBasket()
         {
-            return View();
+            //get accountId from the profile of current (signed in) user.
+            return productService.GetShippingOptionsForBasket(accountId); 
         }
-
-        public IActionResult Privacy()
+        [Authorization] //Is needed for accountId.
+        public bool FinalizeBasket(string shippingId, string paymentToken)
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            //get accountId from the profile of current (signed in) user.
+            productService.FinalizeBasket(accountId);
+            return true;
         }
     }
 }

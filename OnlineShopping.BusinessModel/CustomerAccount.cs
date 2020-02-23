@@ -7,17 +7,21 @@ namespace OnlineShopping.BusinessModel
     public class CustomerAccount
     {
         public int Id { get; private set; }
-        /* Persistance of Basket is a concern. In ideal design we don't expose Basket state and set its access level to private.
+        public Basket Basket { get; private set; }
+       /* Persistance of Basket is a concern. In ideal design we don't expose Basket state
+         and set its access level to private.
          for EF we have compromises and expose an extra property to persistence . */
-        private Basket Basket;
-        public string BasketString
-        {
-            get { return JsonConvert.SerializeObject(Basket); }
-            private set
-            {
-                Basket = JsonConvert.DeserializeObject<Basket>(value);
-            }
-        }
+         //public string BasketString
+        //{
+        //    get {
+        //        // TODO: Write exact serializeation logic.
+        //        return JsonConvert.SerializeObject(Basket); 
+        //    }
+        //    private set
+        //    {
+        //        Basket = JsonConvert.DeserializeObject<Basket>(value);
+        //    }
+        //}
         public void AddItemToBasket(Product pro)
         {
             /* Validation ( business logic) is required here. in fact any client may call this method and wants to change the state.
@@ -30,21 +34,16 @@ namespace OnlineShopping.BusinessModel
              */
             Basket = Basket.AddItem(pro);
         }
-        // domain states should not be returned in any ways(should not be loaded in clien's memory).
-        public BasketDto GetBasket()
-        {
-            return new BasketDto
-            {
-                Items = Basket.Items.Select(i => new ProductDto { }).ToList()
-            };
-        }
     }
-
+    //TODO: Write attribute-base equality.
     public class Basket
     {
-        public List<Product> Items { get; set; }
-        // We add this relation for EF. In ideal design we don't need to model this rel.todo: use fluent api.
-        public CustomerAccount CustomerAccount { get; set; }
+        private IEnumerable<Product> Items;//Do encapsulation. set to private.
+       
+        public IEnumerable<Product> GetItems()
+        {
+            return Items;
+        }
         // TODO:Consider Immutablility??
         public Basket AddItem(Product pro)
         {
@@ -52,7 +51,7 @@ namespace OnlineShopping.BusinessModel
             {
                 Items = this.Items
             };
-            b.Items.Add(pro);
+            b.Items.ToList().Add(pro);
             return b;
         }
     }

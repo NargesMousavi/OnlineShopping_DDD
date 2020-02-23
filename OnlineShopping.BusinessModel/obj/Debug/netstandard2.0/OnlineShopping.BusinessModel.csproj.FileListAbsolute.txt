@@ -1,8 +1,0 @@
-C:\Users\Narges\OnlineShopping\OnlineShopping.BusinessModel\bin\Debug\netstandard2.0\OnlineShopping.BusinessModel.deps.json
-C:\Users\Narges\OnlineShopping\OnlineShopping.BusinessModel\bin\Debug\netstandard2.0\OnlineShopping.BusinessModel.dll
-C:\Users\Narges\OnlineShopping\OnlineShopping.BusinessModel\bin\Debug\netstandard2.0\OnlineShopping.BusinessModel.pdb
-C:\Users\Narges\OnlineShopping\OnlineShopping.BusinessModel\obj\Debug\netstandard2.0\OnlineShopping.BusinessModel.csprojAssemblyReference.cache
-C:\Users\Narges\OnlineShopping\OnlineShopping.BusinessModel\obj\Debug\netstandard2.0\OnlineShopping.BusinessModel.AssemblyInfoInputs.cache
-C:\Users\Narges\OnlineShopping\OnlineShopping.BusinessModel\obj\Debug\netstandard2.0\OnlineShopping.BusinessModel.AssemblyInfo.cs
-C:\Users\Narges\OnlineShopping\OnlineShopping.BusinessModel\obj\Debug\netstandard2.0\OnlineShopping.BusinessModel.dll
-C:\Users\Narges\OnlineShopping\OnlineShopping.BusinessModel\obj\Debug\netstandard2.0\OnlineShopping.BusinessModel.pdb
