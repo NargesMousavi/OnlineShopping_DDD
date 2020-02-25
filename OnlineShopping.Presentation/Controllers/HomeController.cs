@@ -4,6 +4,9 @@ using Microsoft.Extensions.Logging;
 using OnlineShopping.Presentation.Models;
 using OnlineShopping.BusinessModel;
 using System.Linq;
+using System.Web.Http;
+using System.Collections.Generic;
+using System;
 
 namespace OnlineShopping.Presentation.Controllers
 {
@@ -29,30 +32,37 @@ namespace OnlineShopping.Presentation.Controllers
             var ps = prodRepo.GetAllByCat(catId);
             var r = ps.Select(p => new ProductDto
             {
-
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                InStock = p.InStock,
+                ImageLink = p.ImageLink,
             }
              ).ToList();
             return r;
         }
-        [Authorization] //Is needed for accountId.
-        public bool AddItemToBasket( int productId)
+        // [Authorization] //Is needed for accountId.
+        public bool AddItemToBasket(int productId)
         {
             //get accountId from the profile of current (signed in) user.
-            productService.AddItemToBasket(accountId, productId);
+            var accountId = 0;
+            var customer = customerAccountRepo.Get(accountId);
+            var prod = prodRepo.Get(productId);
+            customer.Basket.AddItem(prod);
             return true;
         }
-        [Authorization] //Is needed for accountId.
-        public ShippingOptionsDto GetShippingOptionsForBasket()
-        {
-            //get accountId from the profile of current (signed in) user.
-            return productService.GetShippingOptionsForBasket(accountId); 
-        }
-        [Authorization] //Is needed for accountId.
-        public bool FinalizeBasket(string shippingId, string paymentToken)
-        {
-            //get accountId from the profile of current (signed in) user.
-            productService.FinalizeBasket(accountId);
-            return true;
-        }
+        // [Authorization] //Is needed for accountId.
+        //public ShippingOptionsDto GetShippingOptionsForBasket()
+        //{
+        //    //get accountId from the profile of current (signed in) user.
+        //    return productService.GetShippingOptionsForBasket(accountId);
+        //}
+        //// [Authorization] //Is needed for accountId.
+        //public bool FinalizeBasket(string shippingId, string paymentToken)
+        //{
+        //    //get accountId from the profile of current (signed in) user.
+        //    // productService.FinalizeBasket(accountId);
+        //    return true;
+        //}
     }
 }
